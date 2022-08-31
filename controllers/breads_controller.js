@@ -6,4 +6,8 @@ breads.get('/', (req, res) => {
     res.send(Bread)
 })
 
+breads.get('/:id', (req, res) => {
+    res.send(Bread[req.params.id])
+})
+
 module.exports = breads
