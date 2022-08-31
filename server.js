@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
 const breadsController = require('./controllers/breads_controller')
 app.use('/breads', breadsController)
 
+app.get('*', (req, res) => {
+    res.send('404')
+})
+
 app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}, http://localhost:${PORT}`)
 })
