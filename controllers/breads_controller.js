@@ -15,7 +15,7 @@ breads.get('/:id', (req, res) => {
             bread: Bread[req.params.id]
         })
     } else {
-        res.send('404 - Invalid Bread')
+        res.render('error404', { reason: 'Invalid Bread ID' })
     }
 })
 

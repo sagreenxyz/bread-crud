@@ -18,7 +18,7 @@ const breadsController = require('./controllers/breads_controller')
 app.use('/breads', breadsController)
 
 app.get('*', (req, res) => {
-    res.send('404 - Invalid Route')
+    res.render('error404', { reason: 'Invalid Route' })
 })
 
 app.listen(PORT, () => {
