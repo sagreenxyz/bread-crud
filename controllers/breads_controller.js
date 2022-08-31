@@ -43,7 +43,7 @@ breads.post('/', (req, res) => {
     } else {
         req.body.hasGluten = 'false'
     }
-    Bread.push(req.body)
+    Bread.create(req.body)
     res.status(303).redirect('/breads')
 })
 
