@@ -16,7 +16,8 @@ breads.get('/new', (req, res) => {
 breads.get('/:id', (req, res) => {
     if (Bread[req.params.id]) {
         res.render('show', {
-            bread: Bread[req.params.id]
+            bread: Bread[req.params.id],
+            index: req.params.id
         })
     } else {
         res.render('error404', { reason: 'Invalid Bread ID' })
