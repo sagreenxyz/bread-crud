@@ -42,4 +42,14 @@ breads.delete('/:id', (req, res) => {
     res.status(303).redirect('/breads')
 })
 
+breads.put('/:id', (req, res) => {
+    if (req.body.hasGluten === 'on') {
+        req.body.hasGluten = 'true'
+    } else {
+        req.body.hasGluten = 'false'
+    }
+    Bread[req.params.id] = req.body
+    res.status(303).redirect(`/breads/${req.params.id}`)
+})
+
 module.exports = breads
