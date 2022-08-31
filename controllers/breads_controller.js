@@ -33,7 +33,12 @@ breads.post('/', (req, res) => {
         req.body.hasGluten = 'false'
     }
     Bread.push(req.body)
-    res.redirect('/breads')
+    res.status(303).redirect('/breads')
+})
+
+breads.delete('/:id', (req, res) => {
+    Bread.splice(req.params.id, 1)
+    res.status(303).redirect('/breads')
 })
 
 module.exports = breads
