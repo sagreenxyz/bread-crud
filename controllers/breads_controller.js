@@ -10,9 +10,13 @@ breads.get('/', (req, res) => {
 })
 
 breads.get('/:id', (req, res) => {
-    res.render('show', {
-        bread: Bread[req.params.id]
-    })
+    if (Bread[req.params.id]) {
+        res.render('show', {
+            bread: Bread[req.params.id]
+        })
+    } else {
+        res.send('404 - Invalid Bread')
+    }
 })
 
 module.exports = breads
