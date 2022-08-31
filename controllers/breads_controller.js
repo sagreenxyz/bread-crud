@@ -9,6 +9,10 @@ breads.get('/', (req, res) => {
     })
 })
 
+breads.get('/new', (req, res) => {
+    res.render('new')
+})
+
 breads.get('/:id', (req, res) => {
     if (Bread[req.params.id]) {
         res.render('show', {
