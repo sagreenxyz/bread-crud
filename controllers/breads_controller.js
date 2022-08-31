@@ -10,7 +10,9 @@ breads.get('/', (req, res) => {
 })
 
 breads.get('/:id', (req, res) => {
-    res.send(Bread[req.params.id])
+    res.render('show', {
+        bread: Bread[req.params.id]
+    })
 })
 
 module.exports = breads
