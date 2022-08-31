@@ -1,12 +1,15 @@
 const express = require('express')
 const breads = express.Router()
-const Bread = require('../models/bread-bak.js')
+const Bread = require('../models/bread')
 
 breads.get('/', (req, res) => {
-    res.render('index', {
-        breads: Bread,
-        title: 'Index Page'
-    })
+    Bread.find()
+        .then(foundBreads => {
+            res.render('index', {
+                breads: foundBreads,
+                title: 'Index Page'
+            })
+        })
 })
 
 breads.get('/new', (req, res) => {
