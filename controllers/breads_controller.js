@@ -23,6 +23,9 @@ breads.get('/:id', (req, res) => {
                 bread: foundBread
             })
         })
+        .catch(err => {
+            res.render('error404', {reason: 'ID Not in Database'})
+        })
 })
 
 breads.get('/:id', (req, res) => {
