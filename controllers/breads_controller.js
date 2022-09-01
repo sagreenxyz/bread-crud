@@ -16,15 +16,12 @@ breads.get('/new', (req, res) => {
     res.render('new')
 })
 
-breads.get('/:id', (req, res) => {
+breads.get('/:id/edit', (req, res) => {
     Bread.findById(req.params.id)
         .then(foundBread => {
-            res.render('show', {
+            res.render('edit', {
                 bread: foundBread
             })
-        })
-        .catch(err => {
-            res.render('error404', { reason: 'ID Not in Database' })
         })
 })
 
@@ -34,6 +31,9 @@ breads.get('/:id', (req, res) => {
             res.render('show', {
                 bread: foundBread
             })
+        })
+        .catch(err => {
+            res.render('error404', { reason: 'ID Not in Database' })
         })
 })
 
@@ -59,12 +59,15 @@ breads.delete('/:id', (req, res) => {
 
 breads.put('/:id', (req, res) => {
     if (req.body.hasGluten === 'on') {
-        req.body.hasGluten = 'true'
+        req.body.hasGluten = true
     } else {
-        req.body.hasGluten = 'false'
+        req.body.hasGluten = false
     }
-    Bread[req.params.id] = req.body
-    res.status(303).redirect(`/breads/${req.params.id}`)
+    Bread.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(updatedBread => {
+            console.log(updatedBread)
+            res.redirect(`/breads/${req.params.id}`)
+        })
 })
 
 module.exports = breads
