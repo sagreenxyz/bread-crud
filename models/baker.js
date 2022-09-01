@@ -23,6 +23,10 @@ bakerSchema.virtual('breads', {
     foreignField: 'baker'
 })
 
+bakerSchema.post('findOneAndDelete', function() {
+    console.log(this)
+})            
+
 const Baker = mongoose.model('Baker', bakerSchema)
 
 module.exports = Baker
