@@ -24,7 +24,7 @@ breads.get('/:id', (req, res) => {
             })
         })
         .catch(err => {
-            res.render('error404', {reason: 'ID Not in Database'})
+            res.render('error404', { reason: 'ID Not in Database' })
         })
 })
 
@@ -51,8 +51,10 @@ breads.post('/', (req, res) => {
 })
 
 breads.delete('/:id', (req, res) => {
-    Bread.splice(req.params.id, 1)
-    res.status(303).redirect('/breads')
+    Bread.findByIdAndDelete(req.params.id)
+        .then(deletedBread => {
+            res.status(303).redirect('/breads')
+        })
 })
 
 breads.put('/:id', (req, res) => {
