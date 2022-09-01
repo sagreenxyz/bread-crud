@@ -16,22 +16,22 @@ breads.get('/new', (req, res) => {
     res.render('new')
 })
 
-breads.get('/:id/edit', (req, res) => {
-    res.render('edit', {
-        bread: Bread[req.params.id],
-        index: req.params.id
-    })
+breads.get('/:id', (req, res) => {
+    Bread.findById(req.params.id)
+        .then(foundBread => {
+            res.render('show', {
+                bread: foundBread
+            })
+        })
 })
 
 breads.get('/:id', (req, res) => {
-    if (Bread[req.params.id]) {
-        res.render('show', {
-            bread: Bread[req.params.id],
-            index: req.params.id
+    Bread.findById(req.params.id)
+        .then(foundBread => {
+            res.render('show', {
+                bread: foundBread
+            })
         })
-    } else {
-        res.render('error404', { reason: 'Invalid Bread ID' })
-    }
 })
 
 breads.post('/', (req, res) => {
