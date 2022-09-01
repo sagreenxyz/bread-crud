@@ -8,4 +8,11 @@ baker.get('/data/seed', (req, res) => {
         .then(res.redirect('/breads'))
 })
 
+baker.get('/', (req, res) => {
+    Baker.find()
+        .then(foundBakers => {
+            res.send(foundBakers)
+        })
+})
+
 module.exports = baker                    
