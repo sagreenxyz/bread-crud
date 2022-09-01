@@ -27,6 +27,9 @@ app.get('/', (req, res) => {
 const breadsController = require('./controllers/breads_controller')
 app.use('/breads', breadsController)
 
+const bakersController = require('./controllers/bakers_controller')
+app.use('/bakers', bakersController)
+
 app.get('*', (req, res) => {
     res.render('error404', { reason: 'Invalid Route' })
 })
