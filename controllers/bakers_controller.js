@@ -10,6 +10,7 @@ baker.get('/data/seed', (req, res) => {
 
 baker.get('/', (req, res) => {
     Baker.find()
+        .populate('breads')
         .then(foundBakers => {
             res.send(foundBakers)
         })

@@ -13,6 +13,8 @@ const bakerSchema = new Schema({
         required: true
     },
     bio: String
+}, {
+    toJSON: { virtuals: true }
 })
 
 bakerSchema.virtual('breads', {
